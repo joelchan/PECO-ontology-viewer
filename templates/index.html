@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Matches</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .document {
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .pill {
+            display: inline-block;
+            background-color: #f0f8ff;
+            color: #000;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+        }
+        .pill:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ontology Matches Viewer</h1>
+    {% for document in documents %}
+        <div class="document">
+            <h2>{{ document['doc_title'] or "Untitled Document" }}</h2>
+            <p><strong>PECO Statement:</strong> {{ document['peco_statement'] }}</p>
+
+            {% for key, elements in document['peco_elements'].items() %}
+                <h3>{{ key }}</h3>
+                {% for element in elements %}
+                    <p><strong>Text:</strong> {{ element['text'] }}</p>
+                    {% for match in element['matches'] %}
+                        <a href="{{ match['iri'] }}" target="_blank" class="pill">
+                            {{ match['label'] }}
+                        </a>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+</html>
