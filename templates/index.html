@@ -36,7 +36,8 @@
     {% for document in documents %}
         <div class="document">
             <h2>{{ document['doc_title'] or "Untitled Document" }}</h2>
-            <p><strong>PECO Statement:</strong> {{ document['peco_statement'] }}</p>
+            <p><strong>({{ document['doc_lastauthorname'] }} {{ document['doc_year']}}) | Open-Access URL: <a href="{{ document['url'] }}"> {{document['url']}}</a></strong></p>
+            <p>PECO Statement:{{ document['peco_statement'] }}</p>
 
             {% for key, elements in document['peco_elements'].items() %}
                 <h3>{{ key }}</h3>
