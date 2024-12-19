@@ -11,6 +11,7 @@ with open("data.json", "r") as f:
 def index():
     # Assign unique IDs to Population elements
     for doc_id, document in enumerate(data):
+        document['id'] = f"doc-{doc_id}"  # Unique ID for the document
         for key, elements in document['peco_elements'].items():
             for elem_id, element in enumerate(elements):
                 element['id'] = f"{doc_id}-{key}-{elem_id}"  # Unique ID based on indices

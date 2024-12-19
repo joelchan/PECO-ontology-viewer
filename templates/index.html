@@ -36,7 +36,7 @@
     {% for document in documents %}
         <div class="document">
             <h2>{{ document['doc_title'] or "Untitled Document" }}</h2>
-            <p><strong>PECO Statement:</strong> {{ document['peco_statement'] }}</p>
+            <p><strong><a id="peco-{{ document['id']}}" href="#peco-{{ document['id']}}">PECO Statement</a>:</strong> {{ document['peco_statement'] }}</p>
 
             {% for key, elements in document['peco_elements'].items() %}
                 <h3>{{ key }}</h3>
