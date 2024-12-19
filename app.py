@@ -9,6 +9,11 @@ with open("data.json", "r") as f:
 
 @app.route("/")
 def index():
+    # Assign unique IDs to Population elements
+    for doc_id, document in enumerate(data):
+        for key, elements in document['peco_elements'].items():
+            for elem_id, element in enumerate(elements):
+                element['id'] = f"{doc_id}-{key}-{elem_id}"  # Unique ID based on indices
     return render_template("index.html", documents=data)
 
 if __name__ == "__main__":
